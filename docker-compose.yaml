@@ -6,7 +6,7 @@ services:
     expose:
       - 80
     labels:
-      - "traefik.http.routers.backend.rule=PathPrefix(`/admin`)"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/adminApi`)"
       - "traefik.http.routers.backend.entryPoints=web"
       - "traefik.http.services.backend.loadbalancer.server.port=80"
       - "traefik.http.routers.backend.service=front"
