@@ -6,10 +6,10 @@ services:
     expose:
       - 80
     labels:
-      - "traefik.http.routers.backend.rule=PathPrefix(`/adminApi`)"
-      - "traefik.http.routers.backend.entryPoints=web"
-      - "traefik.http.services.backend.loadbalancer.server.port=80"
-      - "traefik.http.routers.backend.service=front"
+      - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
+      - "traefik.http.routers.admin.entryPoints=web"
+      - "traefik.http.services.admin.loadbalancer.server.port=80"
+      - "traefik.http.routers.admin.service=admin"
     restart: unless-stopped
     networks:
       - traefik-net

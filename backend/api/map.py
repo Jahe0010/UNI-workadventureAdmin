@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/adminApi")
+router = APIRouter(prefix="/admin")
 
 
 @router.get("/map")
