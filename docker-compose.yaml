@@ -3,8 +3,6 @@ version: '3.1'
 services:
   backend:
     build: "./backend"
-    expose:
-      - 80
     labels:
       - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
       - "traefik.http.routers.admin.entryPoints=web"
