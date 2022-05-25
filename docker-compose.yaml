@@ -4,7 +4,7 @@ services:
   backend:
     build: "./backend"
     expose:
-      - 8080
+      - 80
     labels:
       - "traefik.http.routers.backend.rule=PathPrefix(`/admin`)"
       - "traefik.http.routers.backend.entryPoints=web"
