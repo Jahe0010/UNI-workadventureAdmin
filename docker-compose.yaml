@@ -4,7 +4,7 @@ services:
   backend:
     build: "./backend"
     labels:
-      - "traefik.http.routers.backend.rule=PathPrefix(`/admin/api`)"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entryPoints=web"
       - "traefik.http.services.backend.loadbalancer.server.port=80"
       - "traefik.http.routers.backend.service=front"
