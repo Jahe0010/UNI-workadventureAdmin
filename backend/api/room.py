@@ -11,11 +11,10 @@ async def room_access(userIdentifier, playUri, ipAddress):
 
     return {
         "email": "",
-        "userUuid": "",
-        "tags": ["admin"],
+        "userUuid": userIdentifier,
+        "tags": ["user"],
         "visitCardUrl": None,
-        "textures": [],
+        "textures": [{"id": "male1", "url": "resources/characters/pipoya/Male 01-1.png"}],
         "messages": [],
-        "anonymous": True,
-        "userRoomToken": ""
+        "anonymous": False
     }
