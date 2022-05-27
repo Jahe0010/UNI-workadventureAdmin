@@ -9,7 +9,7 @@ async def map():
     The map-endpoint. It returns a static JSON.
     """
     return {
-        "mapUrl": "play.hs-kl.de/maps/zw/zw.json",
+        "mapUrl": "/maps/zw/zw.json",
         "policy_type": 1,
         "tags": [],
         "authenticationMandatory": False,
