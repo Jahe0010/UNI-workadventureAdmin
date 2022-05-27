@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Request
-import json
 
 router = APIRouter(prefix="/admin/api/room")
 
@@ -9,7 +8,9 @@ async def room_access(request: Request):
     """
     The room-access-endpoint. It returns a static JSON.
     """
-    print(json.dumps(request))
+    print(request.json())
+    print(request.headers)
+    print(request.query_params)
     return {
         "mapUrl": "play.hs-kl.de/maps/zw/zw.json",
         "policy_type": 1,
