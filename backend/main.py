@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
-from api import alive, map
+from api import alive, map, room
 
 # Initialize Workadventure Backend
 wb = FastAPI(
@@ -11,6 +11,7 @@ wb = FastAPI(
 
 wb.include_router(alive.router)
 wb.include_router(map.router)
+wb.include_router(room.router)
 
 
 if __name__ == "__main__":

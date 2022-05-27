@@ -1,12 +1,14 @@
+from urllib.request import Request
+
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/admin/api")
+router = APIRouter(prefix="/admin/api/room")
 
 
-@router.get("/map")
-async def map():
+@router.get("/access")
+async def room_access(request: Request):
     """
-    The map-endpoint. It returns a static JSON.
+    The room-access-endpoint. It returns a static JSON.
     """
     return {
         "mapUrl": "play.hs-kl.de/maps/zw/zw.json",
