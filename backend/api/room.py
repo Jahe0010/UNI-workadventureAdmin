@@ -16,5 +16,5 @@ async def room_access(userIdentifier, playUri, ipAddress):
         "visitCardUrl": None,
         "textures": [{"id": "male1", "url": "../resources/characters/pipoya/Male 01-1.png"}],
         "messages": [],
-        "anonymous": False
+        "anonymous": True
     }
