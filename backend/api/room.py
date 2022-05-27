@@ -11,9 +11,9 @@ async def room_access(userIdentifier, playUri, ipAddress):
     print(userIdentifier)
     print(playUri)
     print(ipAddress)
-    
+
     return {
-        "email": None,
+        "email": "",
         "userUuid": userIdentifier,
         "tags": ["admin"],
         "visitCardUrl": None,
