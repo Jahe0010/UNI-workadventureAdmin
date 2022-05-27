@@ -8,13 +8,10 @@ async def room_access(userIdentifier, playUri, ipAddress):
     """
     The room-access-endpoint. It returns a static JSON.
     """
-    print(userIdentifier)
-    print(playUri)
-    print(ipAddress)
 
     return {
         "email": "",
-        "userUuid": userIdentifier,
+        "userUuid": "",
         "tags": ["admin"],
         "visitCardUrl": None,
         "textures": [],
