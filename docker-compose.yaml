@@ -1,14 +1,26 @@
 version: '3.1'
 
 services:
+  database:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: "$DATABASE_ROOT_PASSWORD"
+      MARIADB_USER: "$DATABASE_USER"
+      MARIADB_PASSWORD: "$DATABASE_PASSWORD"
+    volumes:
+      - ./mysql:/var/lib/mysql
+
   backend:
     build: "./backend"
+    dependsOn: database
     labels:
       - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
       - "traefik.http.routers.admin.entryPoints=web"
       - "traefik.http.services.admin.loadbalancer.server.port=80"
       - "traefik.http.routers.admin.service=admin"
-    restart: unless-stopped
+    restart: always
     networks:
       - traefik-net
 
