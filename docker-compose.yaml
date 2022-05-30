@@ -14,7 +14,8 @@ services:
 
   backend:
     build: "./backend"
-    depends_on: database
+    depends_on: 
+      - "database"
     labels:
       - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
       - "traefik.http.routers.admin.entryPoints=web"
