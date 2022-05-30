@@ -4,12 +4,12 @@ router = APIRouter(prefix="/admin/api")
 
 
 @router.get("/map")
-async def map():
+async def map(playUri):
     """
     The map-endpoint. It returns a static JSON.
     """
     return {
-        "mapUrl": "https://play.hs-kl.de/maps/zw/zw.json",
+        "mapUrl": playUri,
         "policy_type": 1,
         "tags": [],
         "authenticationMandatory": False,
