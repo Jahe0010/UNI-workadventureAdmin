@@ -2,7 +2,9 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix="/admin/api")
 
-
+"""
+Simple alive endpoint to see if it works
+"""
 @router.get("/alive")
 async def alive():
     """
