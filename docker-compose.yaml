@@ -24,7 +24,7 @@ services:
       - "traefik.http.routers.admin.service=admin"
     restart: always
     volumes:
-    - ./.env:/opt/app/.env
+    - .env:/opt/app/.env
     networks:
       - traefik-net
 
