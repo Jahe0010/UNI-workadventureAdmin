@@ -10,8 +10,8 @@ services:
       MARIADB_USER: "$DATABASE_USER"
       MARIADB_PASSWORD: "$DATABASE_PASSWORD"
     volumes:
-      - ./mysql:/var/lib/mysql
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /var/log/mysql:/var/lib/mysql
+      #- ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
     build: "./backend"
