@@ -3,13 +3,13 @@ CREATE DATABASE workadventureadmin;
 USE workadventureadmin;
 
 CREATE TABLE tags (
-    id Int NOT NULL,
+    id Int auto_increment,
     tagName varchar(255),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE admins (
-    id Int NOT NULL,
+    id Int auto_increment,
     userId varchar(255),
     tagId Int,
     PRIMARY KEY (id),
@@ -17,7 +17,7 @@ CREATE TABLE admins (
 );
 
 CREATE TABLE banned (
-    id Int NOT NULL,
+    id Int auto_increment,
     userId varchar(255),
     PRIMARY KEY (id)
 );
