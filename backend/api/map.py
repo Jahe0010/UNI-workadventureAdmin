@@ -11,7 +11,7 @@ async def map(playUri):
     The map-endpoint. It returns a static JSON.
     """
     return {
-        "mapUrl": playUri,
+        "mapUrl": "zwoogle3.informatik.hs-kl.de/workadventuregroup/workadventure/-/raw/main/Scrumblezen/maps/zw/zw.json",
         "policy_type": 1,
         "tags": [],
         "authenticationMandatory": False,
