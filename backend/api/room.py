@@ -19,14 +19,13 @@ async def room_access(userIdentifier, playUri, ipAddress):
         textures = json.load(woka_file)
 
     user_tag = "admin" if check_if_user_is_admin(userIdentifier) else "user"
-    print(textures["data"])
     
     return {
         "email": "",
         "userUuid": userIdentifier,
         "tags": [user_tag],
         "visitCardUrl": None,
-        "textures": [{"id": "male1", "url": "/resources/characters/pipoya/Male 01-1.png"}],
+        "textures": json.dump(textures["data"]),
         "messages": [],
         "anonymous": True
     }
