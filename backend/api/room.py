@@ -15,7 +15,7 @@ async def room_access(userIdentifier, playUri, ipAddress):
     The room-access-endpoint. It returns a static JSON.
     """
 
-    with open("../resources/wokaList.json", 'r', encoding='utf-8') as woka_file:
+    with open("./resources/wokaList.json", 'r', encoding='utf-8') as woka_file:
         textures = json.load(woka_file)
 
     user_tag = "admin" if check_if_user_is_admin(userIdentifier) else "user"
