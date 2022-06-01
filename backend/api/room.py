@@ -26,7 +26,7 @@ async def room_access(userIdentifier, playUri, ipAddress):
         "userUuid": userIdentifier,
         "tags": [user_tag],
         "visitCardUrl": None,
-        "textures": textures["data"],
+        "textures": [{"id": "male1", "url": "/wokas/resources/characters/pipoya/Male 01-1.png"}],
         "messages": [],
         "anonymous": True
     }
