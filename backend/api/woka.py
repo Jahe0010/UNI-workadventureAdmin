@@ -9,7 +9,7 @@ returns a woka list
 
 
 @router.get("/list")
-async def get_woka_list():
+async def get_woka_list(userIdentifier, playUri, ipAddress):
     """
     The room-access-endpoint. It returns a static JSON.
     """
