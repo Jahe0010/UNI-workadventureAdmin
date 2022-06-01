@@ -16,16 +16,16 @@ async def room_access(userIdentifier, playUri, ipAddress):
     """
 
     with open("./resources/wokaList.json", 'r', encoding='utf-8') as woka_file:
-        textures = json.load(woka_file)
+        textures = json.loads(woka_file)
 
     user_tag = "admin" if check_if_user_is_admin(userIdentifier) else "user"
-    
+
     return {
         "email": "",
         "userUuid": userIdentifier,
         "tags": [user_tag],
         "visitCardUrl": None,
-        "textures": textures["data"],
+        "textures": textures,
         "messages": [],
         "anonymous": True
     }
