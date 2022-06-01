@@ -14,7 +14,8 @@ DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
 db = mysql.connector.connect(
     host=DATABASE_HOST,
     user=DATABASE_USER,
-    password=DATABASE_PASSWORD
+    password=DATABASE_PASSWORD,
+    database="workadventureadmin"
 )
 
 """
