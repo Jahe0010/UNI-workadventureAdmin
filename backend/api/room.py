@@ -25,7 +25,7 @@ async def room_access(userIdentifier, playUri, ipAddress):
         "userUuid": userIdentifier,
         "tags": [user_tag],
         "visitCardUrl": None,
-        "textures": textures["data"],
+        "textures": list(textures["data"]),
         "messages": [],
         "anonymous": True
     }
