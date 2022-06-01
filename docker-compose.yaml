@@ -5,6 +5,8 @@ services:
     image: mariadb:latest
     ports:
       - 3306:3306
+    networks:
+      - admn-net
     environment:
       MARIADB_ROOT_PASSWORD: "$DATABASE_ROOT_PASSWORD"
       MARIADB_USER: "$DATABASE_USER"
@@ -27,8 +29,11 @@ services:
     - .env:/opt/app/.env
     networks:
       - traefik-net
+      - admn-net
 
 networks:
+  admn-net:
+    driver: bridge
   traefik-net:
       external:
         name: traefik-net
