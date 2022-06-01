@@ -9,7 +9,7 @@ returns a woka list
 
 
 @router.get("/list")
-async def get_woka_list(userIdentifier, playUri, ipAddress):
+async def get_woka_list(roomUrl, uuid):
     """
     The room-access-endpoint. It returns a static JSON.
     """
@@ -17,4 +17,4 @@ async def get_woka_list(userIdentifier, playUri, ipAddress):
     with open("./resources/wokaList.json", 'r', encoding='utf-8') as woka_file:
         textures = json.load(woka_file)
 
-    return json.dump(textures["data"])
+    return textures
