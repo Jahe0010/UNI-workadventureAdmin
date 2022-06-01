@@ -2,6 +2,11 @@ CREATE DATABASE workadventureadmin;
 
 USE workadventureadmin;
 
+CREATE USER 'username' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON workadventureadmin.* TO 'workadventure';
+FLUSH PRIVILEGES;
+
+
 CREATE TABLE tags (
     id Int auto_increment,
     tagName varchar(255),
