@@ -28,12 +28,12 @@ Gets a list of the available textures on the server
 
 
 @router.get("/access")
-async def room_access(userIdentifier, playUri, characterLayers, ipAddress):
+async def room_access(userIdentifier, playUri, ipAddress, characterLayers=None):
     """
     The room-access-endpoint. It returns a static JSON.
     """
 
-    character_layers = characterLayers or []
+    character_layers = characterLayers if characterLayers else []
 
     # Notice that we filter the textures based on the user selection (given on characterLayers)
     textures = filter(lambda woka : characterLayers.indexOf(woka.id) is not -1, get_all_textures())
