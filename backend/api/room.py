@@ -30,7 +30,6 @@ async def room_access(userIdentifier, playUri, ipAddress):
         {"id": "male10", "url": "resources/characters/pipoya/Male 05-3.png"},
         {"id": "male11", "url": "resources/characters/pipoya/Teacher male 02.png"},
         {"id": "male12", "url": "resources/characters/pipoya/su4 Student male 12.png"},
-
         {"id": "Female1", "url": "resources/characters/pipoya/Female 01-1.png"},
         {"id": "Female2", "url": "resources/characters/pipoya/Female 02-2.png"},
         {"id": "Female3", "url": "resources/characters/pipoya/Female 03-4.png"},

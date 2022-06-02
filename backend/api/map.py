@@ -17,16 +17,6 @@ async def map(playUri):
     
     return {
         "mapUrl": map_url,
-        "policy_type": 1,
-        "tags": [],
-        "authenticationMandatory": False,
-        "roomSlug": None,
-        "contactPage": None,
-        "group": None,
-        "iframeAuthentication": None,
-        "miniLogo": None,
-        "loadingLogo": None,
-        "loginSceneLogo": None,
-        "showPoweredBy": True,
-        "loadingCowebsiteLogo": None
+        "authenticationMandatory": True,
+        "group": "wa",
     }
