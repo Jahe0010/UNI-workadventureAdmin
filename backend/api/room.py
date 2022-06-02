@@ -48,7 +48,7 @@ async def room_access(userIdentifier, playUri, ipAddress):
     user_tag = "admin" if check_if_user_is_admin(userIdentifier) else "user"
 
     return {
-        "email": "",
+        "email": "user@user",
         "userUuid": userIdentifier,
         "tags": [user_tag],
         "visitCardUrl": None,
