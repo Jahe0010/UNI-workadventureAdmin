@@ -17,6 +17,7 @@ def get_all_textures():
                     "id": texture.id,
                     "url": texture.url,
                     "layer": groupName
+                })
     return wokas
 
 """
