@@ -4,6 +4,21 @@ from database.connection import check_if_user_is_admin
 
 router = APIRouter(prefix="/admin/api/room")
 
+with open('./resources/wokaList.json') as json_file:
+    woka_list = json.load(json_file)
+
+def get_all_textures():
+    wokas = []
+    for groupName in woka_list:
+        group = woka_list[groupName]
+        for collection in group.collections:
+            for texture in collection.texture:
+                wokas.append({
+                    "id": texture.id,
+                    "url": texture.url,
+                    "layer": groupName
+    return wokas
+
 """
 Check if the user has access to a specific room
 Check and returns the tag of an User
@@ -12,39 +27,18 @@ Gets a list of the available textures on the server
 
 
 @router.get("/access")
-async def room_access(userIdentifier, playUri, ipAddress):
+async def room_access(userIdentifier, playUri, characterLayers, ipAddress):
     """
     The room-access-endpoint. It returns a static JSON.
     """
 
-    textures = [
-        {"id": "male1", "url": "resources/characters/pipoya/Male 01-1.png"},
-        {"id": "male2", "url": "resources/characters/pipoya/Male 02-2.png"},
-        {"id": "male3", "url": "resources/characters/pipoya/Male 03-4.png"},
-        {"id": "male4", "url": "resources/characters/pipoya/Male 09-1.png"},
-        {"id": "male5", "url": "resources/characters/pipoya/Male 10-3.png"},
-        {"id": "male6", "url": "resources/characters/pipoya/Male 17-2.png"},
-        {"id": "male7", "url": "resources/characters/pipoya/Male 18-1.png"},
-        {"id": "male8", "url": "resources/characters/pipoya/Male 16-4.png"},
-        {"id": "male9", "url": "resources/characters/pipoya/Male 07-2.png"},
-        {"id": "male10", "url": "resources/characters/pipoya/Male 05-3.png"},
-        {"id": "male11", "url": "resources/characters/pipoya/Teacher male 02.png"},
-        {"id": "male12", "url": "resources/characters/pipoya/su4 Student male 12.png"},
+    character_layers = characterLayers or []
 
-        {"id": "Female1", "url": "resources/characters/pipoya/Female 01-1.png"},
-        {"id": "Female2", "url": "resources/characters/pipoya/Female 02-2.png"},
-        {"id": "Female3", "url": "resources/characters/pipoya/Female 03-4.png"},
-        {"id": "Female4", "url": "resources/characters/pipoya/Female 09-1.png"},
-        {"id": "Female5", "url": "resources/characters/pipoya/Female 10-3.png"},
-        {"id": "Female6", "url": "resources/characters/pipoya/Female 17-2.png"},
-        {"id": "Female7", "url": "resources/characters/pipoya/Female 18-1.png"},
-        {"id": "Female8", "url": "resources/characters/pipoya/Female 16-4.png"},
-        {"id": "Female9", "url": "resources/characters/pipoya/Female 07-2.png"},
-        {"id": "Female10", "url": "resources/characters/pipoya/Female 05-3.png"},
-        {"id": "Female11", "url": "resources/characters/pipoya/Teacher fmale 02.png"},
-        {"id": "Female12", "url": "resources/characters/pipoya/su4 Student fmale 12.png"}
-    ]
+    # Notice that we filter the textures based on the user selection (given on characterLayers)
+    textures = filter(lambda woka : characterLayers.indexOf(woka.id) is not -1, get_all_textures())
 
+    # make sure to preserve the texture order (given on character_layers)
+    textures = [x for _,x in sorted(zip(character_layers,textures))]
     user_tag = "admin" if check_if_user_is_admin(userIdentifier) else "user"
 
     return {
