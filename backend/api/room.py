@@ -12,7 +12,7 @@ def get_all_textures():
     for groupName in woka_list:
         group = woka_list[groupName]
         for collection in group["collections"]:
-            for texture in collection["texture"]:
+            for texture in collection["textures"]:
                 wokas.append({
                     "id": texture.id,
                     "url": texture.url,
