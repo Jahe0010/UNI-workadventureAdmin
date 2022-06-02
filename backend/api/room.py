@@ -14,8 +14,8 @@ def get_all_textures():
         for collection in group["collections"]:
             for texture in collection["textures"]:
                 wokas.append({
-                    "id": texture.id,
-                    "url": texture.url,
+                    "id": texture["id"],
+                    "url": texture["url"],
                     "layer": groupName
                 })
     return wokas
