@@ -11,6 +11,7 @@ def get_all_textures():
     wokas = []
     for groupName in woka_list:
         group = woka_list[groupName]
+        print(group)
         for collection in group.collections:
             for texture in collection.texture:
                 wokas.append({
