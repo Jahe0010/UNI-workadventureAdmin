@@ -12,8 +12,7 @@ async def map(playUri):
     The map-endpoint. It returns a static JSON.
     """
     map_url = urllib.parse.unquote(playUri)
-    map_url = map_url.strip("global/")[1]
-    print(map_url)
+    map_url = "https://play.hs-kl.de/maps/" + map_url.split("maps/")[1] if "maps" in map_url else map_url
 
     return {
         "mapUrl": map_url,
@@ -23,6 +22,7 @@ async def map(playUri):
         "roomSlug": None,
         "contactPage": None,
         "group": "wa",
+        "iframeAuthentication": None,
         "miniLogo": None,
         "loadingLogo": None,
         "loginSceneLogo": None,
