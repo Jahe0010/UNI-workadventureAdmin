@@ -1,9 +1,10 @@
-FROM python:3.7-slim
-WORKDIR /opt/app
+FROM node:alpine3.16
 
-RUN apt-get update
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /usr/src/backend
+COPY . /usr/src/backend/
 
-COPY . .
-CMD ["python", "main.py"]
+RUN npm install
+
+EXPOSE 8080
+
+CMD [ "npm", "start" ]
