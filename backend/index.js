@@ -126,7 +126,7 @@ app.post('/admin/api/setAdmin', (req,res) => {
  * 200 ok - if successfull
  * 500 bad request - on an error -> check logs!
  */
-app.post('/admin/api/removeAdmin', (req,res) => {
+app.delete('/admin/api/removeAdmin', (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID
         if(dbDelete.removeAdmin(playerUUID)) {
