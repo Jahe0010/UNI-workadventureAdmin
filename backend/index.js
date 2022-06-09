@@ -33,8 +33,9 @@ function getAllTextures() {
 function isAuthenticated(token) {
     const adminPW = process.env.AdminPassword;
 
+
     if(token) {
-        return token === adminPW;
+        return token === "Bearer " + adminPW;
     }
 
     return false;
@@ -42,7 +43,7 @@ function isAuthenticated(token) {
 
 //returns the map object. this includes the url of the map that has to be loaded
 app.get("/admin/api/map", (req, res) => {
-    if (isAuthenticated(req.query.token)) {
+    if (isAuthenticated(req.header('authorization'))) {
         res.send(JSON.stringify({
             mapUrl : "https://play.hs-kl.de/maps/" + req.query.playUri.split("maps/")[1],
             policy_type: 1,
@@ -67,7 +68,7 @@ app.get("/admin/api/map", (req, res) => {
 //returns a list of all available wokas
 app.get("/admin/api/woka/list", (req, res) => {
     // You receive the userId
-    if (isAuthenticated(req.query.token)) {
+    if (isAuthenticated(req.header('authorization'))) {
         res.send(wokaList)
     }
     res.sendStatus(401)
@@ -75,7 +76,7 @@ app.get("/admin/api/woka/list", (req, res) => {
 
 // returns the information about a user and his rights when he tries to access a room
 app.get("/admin/api/room/access", (req, res) => {
-    if (isAuthenticated(req.query.token)) {
+    if (isAuthenticated(req.header('authorization'))){
         console.debug("Receive access request with identifier:", req.query.userIdentifier)
         let characterLayers = req.query.characterLayers || []
 
@@ -108,7 +109,7 @@ app.get("/admin/api/room/access", (req, res) => {
  * 500 bad request - on an error -> check logs!
  */
 app.post('/admin/api/setAdmin', (req,res) => {
-    if (isAuthenticated(req.query.token)) {
+    if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID
         if(dbInsert.setAdmin(playerUUID)) {
             res.sendStatus(200)
@@ -126,7 +127,7 @@ app.post('/admin/api/setAdmin', (req,res) => {
  * 500 bad request - on an error -> check logs!
  */
 app.post('/admin/api/removeAdmin', (req,res) => {
-    if (isAuthenticated(req.query.token)) {
+    if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID
         if(dbDelete.removeAdmin(playerUUID)) {
             res.sendStatus(200)
