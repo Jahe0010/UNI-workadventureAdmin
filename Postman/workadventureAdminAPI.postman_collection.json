@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "e59a8405-a04a-454d-aadf-dea126a3f227",
+		"name": "workadventureAdminAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "setAdmin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"playerUUID\": \"27c17a6b-e039-4589-ad60-1bb9bce9a42c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://play.hs-kl.de/admin/api/setAdmin",
+					"protocol": "https",
+					"host": [
+						"play",
+						"hs-kl",
+						"de"
+					],
+					"path": [
+						"admin",
+						"api",
+						"setAdmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeAdmin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"playerUUID\": \"27c17a6b-e039-4589-ad60-1bb9bce9a42c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://play.hs-kl.de/admin/api/removeAdmin",
+					"protocol": "https",
+					"host": [
+						"play",
+						"hs-kl",
+						"de"
+					],
+					"path": [
+						"admin",
+						"api",
+						"removeAdmin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
