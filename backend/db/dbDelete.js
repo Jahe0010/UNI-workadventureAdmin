@@ -4,7 +4,7 @@ import { mysqlConnection } from "./dbConnection.js";
  * Removes a player from the admin table
  * @param {} playerUUID 
 */
-function removeAdmin(playerUUID) {
+export function removeAdmin(playerUUID) {
     return mysqlConnection.connect(function(err) {
         if (err) {
             console.log("error during connection to the database " + err);
@@ -21,8 +21,4 @@ function removeAdmin(playerUUID) {
         });
       });
       
-}
-
-export {
-    removeAdmin
 }

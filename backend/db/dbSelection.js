@@ -5,7 +5,7 @@ import { mysqlConnection } from "./dbConnection.js";
  * @param {} playerUUID 
  * @returns 
  */
-function isAdmin(playerUUID) {
+export function isAdmin(playerUUID) {
     return mysqlConnection.connect(function(err) {
         if (err) {
             console.log("error during connection to the database " + err);
@@ -20,5 +20,3 @@ function isAdmin(playerUUID) {
         });
     });
 }
-
-export { isAdmin }
