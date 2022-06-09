@@ -1,6 +1,6 @@
-import { setAdmin } from "./db/dbInsert.js";
-import { isAdmin } from "./db/dbSelection.js";
-import { removeAdmin } from './db/dbDelete.js';
+const dbInsert = require("./db/dbInsert.js");
+const dbSelection = require("./db/dbSelection.js");
+const dbDelete = require("./db/dbDelete.js");
 
 const express = require("express")
 const bodyParser = require("body-parser");
@@ -66,7 +66,7 @@ app.get("/admin/api/room/access", (req, res) => {
     // make sure to preserve the texture order (given on characterLayers)
     textures.sort( (t1, t2) => characterLayers.indexOf(t1.id) - characterLayers.indexOf(t2.id) )
 
-    let user_tag = isAdmin(req.query.userIdentifier) ? "admin" : "user"
+    let user_tag = dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
     res.send(
         JSON.stringify({
             email: null,
@@ -88,7 +88,7 @@ app.get("/admin/api/room/access", (req, res) => {
  */
 app.post('/admin/api/setAdmin', (req,res) => {
     let playerUUID = req.body.playerUUID
-    if(setAdmin(playerUUID)) {
+    if(dbInsert.setAdmin(playerUUID)) {
         res.sendStatus(200)
     } else {
         res.sendStatus(500)
@@ -103,7 +103,7 @@ app.post('/admin/api/setAdmin', (req,res) => {
  */
 app.post('/admin/api/removeAdmin', (req,res) => {
     let playerUUID = req.body.playerUUID
-    if(removeAdmin(playerUUID)) {
+    if(dbDelete.removeAdmin(playerUUID)) {
         res.sendStatus(200)
     } else {
         res.sendStatus(500)
