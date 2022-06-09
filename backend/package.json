@@ -4,7 +4,6 @@
     "main": "index.js",
     "author": "takeuchi & jannick Heim",
     "license": "MIT",
-    "type": "module",
     "dependencies": {
         "body-parser": "^1.20.0",
         "dotenv": "^16.0.1",

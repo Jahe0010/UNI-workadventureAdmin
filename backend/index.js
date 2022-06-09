@@ -69,7 +69,7 @@ app.get("/admin/api/room/access", (req, res) => {
     let user_tag = dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
     res.send(
         JSON.stringify({
-            email: null,
+            email: "test@test",
             userUuid: req.query.userIdentifier,
             tags: [user_tag],
             visitCardUrl: null,
