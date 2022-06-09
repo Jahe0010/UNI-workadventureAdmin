@@ -1,4 +1,4 @@
-import { mysqlConnection } from "./dbConnection";
+import { mysqlConnection } from "./dbConnection.js";
 
 /**
  * Removes a player from the admin table

@@ -1,5 +1,6 @@
-import { setAdmin } from "./db/dbInsert";
-import { isAdmin } from "./db/dbSelection";
+import { setAdmin } from "./db/dbInsert.js";
+import { isAdmin } from "./db/dbSelection.js";
+import { removeAdmin } from './db/dbDelete.js';
 
 const express = require("express")
 const bodyParser = require("body-parser");

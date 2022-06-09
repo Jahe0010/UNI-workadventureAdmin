@@ -1,4 +1,4 @@
-import { mysqlConnection } from "./dbConnection";
+import { mysqlConnection } from "./dbConnection.js";
 
 /**
  * Checks if a user is an admin
