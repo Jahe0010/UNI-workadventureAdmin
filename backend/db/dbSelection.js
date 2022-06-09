@@ -6,18 +6,12 @@ const mysql = require("./dbConnection.js");
  * @returns 
  */
 function isAdmin(playerUUID) {
-    return mysql.mysqlConnection.connect(function(err) {
+    return mysql.mysqlConnection.query("SELECT id FROM admins WHERE userId = " + playerUUID, function (err, result) {
         if (err) {
-            console.log("error during connection to the database " + err);
-            return false
+            console.log("an error occured while selecting from the database")
+            return false;
         };
-        mysql.mysqlConnection.query("SELECT id FROM admins WHERE userId = " + playerUUID, function (err, result) {
-          if (err) {
-              console.log("an error occured while selecting from the database")
-              return false;
-          };
-          return result.length > 0 ? true : false;
-        });
+        return result.length > 0 ? true : false;
     });
 }
 
