@@ -1,6 +1,13 @@
+import { setAdmin } from "./db/dbInsert";
+import { isAdmin } from "./db/dbSelection";
+
 const express = require("express")
+const bodyParser = require("body-parser");
 const app = express()
 const wokaList = require('./resources/wokaList.json')
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //Extract textures from the woka list
 function getAllTextures() {
@@ -58,10 +65,10 @@ app.get("/admin/api/room/access", (req, res) => {
     // make sure to preserve the texture order (given on characterLayers)
     textures.sort( (t1, t2) => characterLayers.indexOf(t1.id) - characterLayers.indexOf(t2.id) )
 
-    let user_tag = "user"
+    let user_tag = isAdmin(req.query.userIdentifier) ? "admin" : "user"
     res.send(
         JSON.stringify({
-            email: "user@user",
+            email: null,
             userUuid: req.query.userIdentifier,
             tags: [user_tag],
             visitCardUrl: null,
@@ -72,12 +79,34 @@ app.get("/admin/api/room/access", (req, res) => {
     )
 })
 
+/**
+ * Tags a Player as an admin
+ * Requires playerUuid
+ * 200 ok - if successfull
+ * 500 bad request - on an error -> check logs!
+ */
+app.post('/admin/api/setAdmin', (req,res) => {
+    let playerUUID = req.body.playerUUID
+    if(setAdmin(playerUUID)) {
+        res.sendStatus(200)
+    } else {
+        res.sendStatus(500)
+    }
+})
 
-app.get("/admin/*", (req, res) => {
-    console.debug("Request not handled:", req.url)
-    console.debug(req.method)
-    console.debug(req.query)
-    res.send("{}")
+/**
+ * Remove a Player as an admin
+ * Requires playerUuid
+ * 200 ok - if successfull
+ * 500 bad request - on an error -> check logs!
+ */
+app.post('/admin/api/removeAdmin', (req,res) => {
+    let playerUUID = req.body.playerUUID
+    if(removeAdmin(playerUUID)) {
+        res.sendStatus(200)
+    } else {
+        res.sendStatus(500)
+    }
 })
 
 // port to start the app on
