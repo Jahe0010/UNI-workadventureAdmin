@@ -35,7 +35,7 @@ function isAuthenticated(token) {
 
 
     if(token) {
-        return token == "Bearer " + adminPW || token == adminPw;
+        return ((token == "Bearer " + adminPW) || (token == adminPW));
     }
 
     return false;
