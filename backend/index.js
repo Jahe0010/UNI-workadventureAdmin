@@ -71,7 +71,9 @@ app.get("/admin/api/room/access", (req, res) => {
 
         // we check if a incoming user is an admin
         console.log(dbSelection.isAdmin(req.query.userIdentifier))
-        let user_tag = await dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
+        let user_tag = dbSelection.isAdmin(req.query.userIdentifier, function(err, result){
+            return result ? "admin" : "user"
+        }) 
         return res.send(
             JSON.stringify({
                 email: "test@test",
