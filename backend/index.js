@@ -58,7 +58,7 @@ app.get("/admin/api/woka/list", (req, res) => {
  * 401 - unauthorized
  * 200 - returns all information about a user who wants to access a room(standard endpoint read more about it on workadventure)
  */
-app.get("/admin/api/room/access", (req, res) => {
+app.get("/admin/api/room/access", async (req, res) => {
     if (utils.isAuthenticated(req.header('authorization'))){
         console.debug("Receive access request with identifier:", req.query.userIdentifier)
         let characterLayers = req.query.characterLayers || []
@@ -71,7 +71,7 @@ app.get("/admin/api/room/access", (req, res) => {
 
         // we check if a incoming user is an admin
         console.log(dbSelection.isAdmin(req.query.userIdentifier))
-        let user_tag = dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
+        let user_tag = await dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
         return res.send(
             JSON.stringify({
                 email: "test@test",
