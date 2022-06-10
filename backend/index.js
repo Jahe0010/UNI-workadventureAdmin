@@ -96,7 +96,7 @@ app.get("/admin/api/room/access", async function(req, res) {
  * 401 unauthorized 
  */
 app.post('/admin/api/setAdmin', async (req,res) => {
-    if (isAuthenticated(req.header('authorization'))){
+    if (utils.isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
         let insertResponse = await dbInsert.setAdmin(playerUUID);
 
@@ -117,7 +117,7 @@ app.post('/admin/api/setAdmin', async (req,res) => {
  * 401 unauthorized 
  */
 app.delete('/admin/api/removeAdmin', async (req,res) => {
-    if (isAuthenticated(req.header('authorization'))){
+    if (utils.isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
         let deleteResponse = await dbDelete.removeAdmin(playerUUID);
 
