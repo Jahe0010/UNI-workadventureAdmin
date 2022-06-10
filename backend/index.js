@@ -71,7 +71,6 @@ app.get("/admin/api/room/access", async function(req, res) {
 
         // we check if a incoming user is an admin
         let isAdmin = await dbSelection.isAdmin(req.query.userIdentifier);
-        console.log(isAdmin)
         let user_tag = isAdmin ? "admin" : "user"
 
         return res.send(
@@ -99,7 +98,7 @@ app.get("/admin/api/room/access", async function(req, res) {
 app.post('/admin/api/setAdmin', async (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
-        let insertResponse = dbInsert.setAdmin(playerUUID);
+        let insertResponse = await dbInsert.setAdmin(playerUUID);
 
         if(insertResponse) {
             return res.sendStatus(200)
@@ -120,7 +119,7 @@ app.post('/admin/api/setAdmin', async (req,res) => {
 app.delete('/admin/api/removeAdmin', async (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
-        let deleteResponse = dbDelete.removeAdmin(playerUUID);
+        let deleteResponse = await dbDelete.removeAdmin(playerUUID);
 
         if(deleteResponse) {
             return res.sendStatus(200)
