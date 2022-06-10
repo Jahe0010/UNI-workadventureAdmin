@@ -5,7 +5,7 @@ const wokaList = require('./resources/wokaList.json');
 const dbInsert = require("./db/dbInsert.js");
 const dbSelection = require("./db/dbSelection.js");
 const dbDelete = require("./db/dbDelete.js");
-const utils = require("./shared/utils.js").default;
+const utils = require("./shared/utils.js");
 
 // initialize express app
 const app = express();
