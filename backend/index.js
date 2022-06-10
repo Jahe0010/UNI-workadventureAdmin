@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.get("/admin/api/map", (req, res) => {
     if (utils.isAuthenticated(req.header('authorization'))) {
         // we extract the map url based on the incoming playUri
-        res.send(JSON.stringify({
+        return res.send(JSON.stringify({
             mapUrl : "maps/" + req.query.playUri.split("maps/")[1],
             policy_type: 1,
             tags: [],
@@ -39,7 +39,7 @@ app.get("/admin/api/map", (req, res) => {
         }
         ))
     }
-    res.sendStatus(401)
+    return res.sendStatus(401)
 })
 
 /**
@@ -49,9 +49,9 @@ app.get("/admin/api/map", (req, res) => {
 app.get("/admin/api/woka/list", (req, res) => {
     // You receive the userId
     if (utils.isAuthenticated(req.header('authorization'))) {
-        res.send(wokaList)
+        return res.send(wokaList)
     }
-    res.sendStatus(401)
+    return res.sendStatus(401)
 })
 
 /**
@@ -71,7 +71,7 @@ app.get("/admin/api/room/access", (req, res) => {
 
         // we check if a incoming user is an admin
         let user_tag = dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
-        res.send(
+        return res.send(
             JSON.stringify({
                 email: "test@test",
                 userUuid: req.query.userIdentifier,
@@ -83,7 +83,7 @@ app.get("/admin/api/room/access", (req, res) => {
             })
         ) 
     }
-    res.sendStatus(401)
+    return res.sendStatus(401)
 })
 
 /**
@@ -97,12 +97,12 @@ app.post('/admin/api/setAdmin', (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID
         if(dbInsert.setAdmin(playerUUID)) {
-            res.sendStatus(200)
+            return res.sendStatus(200)
         } else {
-            res.sendStatus(500)
+            return res.sendStatus(500)
         }
     }
-    res.sendStatus(401)
+    return res.sendStatus(401)
 })
 
 /**
@@ -116,12 +116,12 @@ app.delete('/admin/api/removeAdmin', (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID
         if(dbDelete.removeAdmin(playerUUID)) {
-            res.sendStatus(200)
+            return res.sendStatus(200)
         } else {
-            res.sendStatus(500)
+            return res.sendStatus(500)
         }
     }
-    res.sendStatus(401)
+    return res.sendStatus(401)
 })
 
 // port to start the app on
