@@ -70,6 +70,7 @@ app.get("/admin/api/room/access", (req, res) => {
         textures.sort( (t1, t2) => characterLayers.indexOf(t1.id) - characterLayers.indexOf(t2.id) )
 
         // we check if a incoming user is an admin
+        console.log(dbSelection.isAdmin(req.query.userIdentifier))
         let user_tag = dbSelection.isAdmin(req.query.userIdentifier) ? "admin" : "user"
         return res.send(
             JSON.stringify({

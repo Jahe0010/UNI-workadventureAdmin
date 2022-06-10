@@ -7,7 +7,7 @@ const mysql = require("./dbConnection.js");
  */
 function setAdmin(playerUUID) {
     var sql = "INSERT INTO admins (userId, tagId) VALUES ('" + playerUUID + "', 1)";
-    return mysql.mysqlConnection.query(sql, function (err, result) {
+    mysql.mysqlConnection.query(sql, function (err, result) {
         if (err) {
             console.log("error while inserting a user as admin " + err);
             return false;
