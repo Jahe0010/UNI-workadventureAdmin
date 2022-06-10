@@ -1,8 +1,7 @@
 require('dotenv').config();
-const wokaList = require('../resources/wokaList.json');
 
 //Extract textures from the woka list
-function getAllTextures() {
+function getAllTextures(wokaList) {
     let wokas = []
     Object.keys(wokaList).forEach(groupName => {
         let group = wokaList[groupName]

@@ -1,11 +1,11 @@
-const wokaList = require('./resources/wokaList.json');
 const express = require("express")
 const bodyParser = require("body-parser");
 
+const wokaList = require('./resources/wokaList.json');
 const dbInsert = require("./db/dbInsert.js");
 const dbSelection = require("./db/dbSelection.js");
 const dbDelete = require("./db/dbDelete.js");
-const utils = require("./shared/utils.js");
+const utils = require("./shared/utils.js").default;
 
 // initialize express app
 const app = express();
@@ -64,7 +64,7 @@ app.get("/admin/api/room/access", (req, res) => {
         let characterLayers = req.query.characterLayers || []
 
         // Notice that we filter the textures based on the user selection (given on characterLayers)
-        let textures = utils.getAllTextures().filter(woka => characterLayers.indexOf(woka.id) !== -1)
+        let textures = utils.getAllTextures(wokaList).filter(woka => characterLayers.indexOf(woka.id) !== -1)
 
         // make sure to preserve the texture order (given on characterLayers)
         textures.sort( (t1, t2) => characterLayers.indexOf(t1.id) - characterLayers.indexOf(t2.id) )
