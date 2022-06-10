@@ -9,7 +9,7 @@ function removeAdmin(playerUUID) {
     return new Promise((resolve, reject)=>{
         mysql.mysqlConnection.query(sql, function (err, result) {
             if (err) {
-                console.log("error while deleting the entry from the database " + err);
+                console.error("error while deleting the entry from the database " + err);
                 return reject(false);
             };
             return resolve(true);
