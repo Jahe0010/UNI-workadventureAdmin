@@ -31,7 +31,7 @@ function isAuthenticated(token) {
     return false;
 }
 
-module.exports {
+module.exports = {
     getAllTextures,
     isAuthenticated
 }
