@@ -28,7 +28,7 @@ app.get("/admin/api/map", (req, res) => {
             tags: [],
             authenticationMandatory: false,
             roomSlug: null,
-            contactPage: "<iframe src='" + process.env.CONTACT_PAGE +"'></iframe>",
+            contactPage: "/Einstiegsseite/credits.html",
             group: "wa",
             iframeAuthentication: null,
             miniLogo: null,
@@ -126,7 +126,7 @@ app.delete('/admin/api/removeAdmin', async (req,res) => {
     if (utils.isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
         let isAdmin = await dbSelection.isAdmin(playerUUID);
-        
+
         if(!isAdmin) {
             return res.send("Player has no admin tag.");
         }
