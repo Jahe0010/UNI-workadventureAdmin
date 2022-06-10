@@ -91,13 +91,18 @@ app.get("/admin/api/room/access", async function(req, res) {
 /**
  * Tags a Player as an admin
  * Requires playerUuid
- * 200 ok and an additional success message - if successfull
+ * 200 ok and an optional additional success message - if successfull
  * 500 bad request - on an error -> check logs!
  * 401 unauthorized 
  */
 app.post('/admin/api/setAdmin', async (req,res) => {
     if (utils.isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
+        let isAdmin = await dbSelection.isAdmin(playerUUID);
+        if(isAdmin) {
+            return res.send("Player has already the admin tag.");
+        }
+
         let insertResponse = await dbInsert.setAdmin(playerUUID);
 
         if(insertResponse) {

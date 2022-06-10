@@ -12,7 +12,7 @@ function setAdmin(playerUUID) {
             if (err) {
                 console.log("error while inserting a user as admin " + err);
                 return reject(false);
-            }   
+            }
             return resolve(true);
         });
     });
