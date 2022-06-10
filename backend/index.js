@@ -22,7 +22,7 @@ app.get("/admin/api/map", (req, res) => {
     if (utils.isAuthenticated(req.header('authorization'))) {
         // we extract the map url based on the incoming playUri
         return res.send(JSON.stringify({
-            mapUrl : "maps/" + req.query.playUri.split("maps/")[1],
+            mapUrl : "https://play.hs-kl.de/maps/" + req.query.playUri.split("maps/")[1],
             policy_type: 1,
             tags: [],
             authenticationMandatory: false,
