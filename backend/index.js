@@ -96,10 +96,12 @@ app.get("/admin/api/room/access", async function(req, res) {
  * 500 bad request - on an error -> check logs!
  * 401 unauthorized 
  */
-app.post('/admin/api/setAdmin', (req,res) => {
+app.post('/admin/api/setAdmin', async (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
-        let playerUUID = req.body.playerUUID
-        if(dbInsert.setAdmin(playerUUID)) {
+        let playerUUID = req.body.playerUUID;
+        let insertResponse = dbInsert.setAdmin(playerUUID);
+
+        if(insertResponse) {
             return res.sendStatus(200)
         } else {
             return res.sendStatus(500)
@@ -115,10 +117,12 @@ app.post('/admin/api/setAdmin', (req,res) => {
  * 500 bad request - on an error -> check logs!
  * 401 unauthorized 
  */
-app.delete('/admin/api/removeAdmin', (req,res) => {
+app.delete('/admin/api/removeAdmin', async (req,res) => {
     if (isAuthenticated(req.header('authorization'))){
-        let playerUUID = req.body.playerUUID
-        if(dbDelete.removeAdmin(playerUUID)) {
+        let playerUUID = req.body.playerUUID;
+        let deleteResponse = dbDelete.removeAdmin(playerUUID);
+
+        if(deleteResponse) {
             return res.sendStatus(200)
         } else {
             return res.sendStatus(500)

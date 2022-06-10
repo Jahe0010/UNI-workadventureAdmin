@@ -6,13 +6,15 @@ const mysql = require("./dbConnection.js");
  * @returns 
  */
 function setAdmin(playerUUID) {
-    var sql = "INSERT INTO admins (userId, tagId) VALUES ('" + playerUUID + "', 1)";
-    mysql.mysqlConnection.query(sql, function (err, result) {
-        if (err) {
-            console.log("error while inserting a user as admin " + err);
-            return false;
-        }   
-        return true;
+    return new Promise((resolve, reject)=>{
+        let sql = "INSERT INTO admins (userId, tagId) VALUES ('" + playerUUID + "', 1)";
+        mysql.mysqlConnection.query(sql, function (err, result) {
+            if (err) {
+                console.log("error while inserting a user as admin " + err);
+                return reject(false);
+            }   
+            return resolve(true);
+        });
     });
 }
 
