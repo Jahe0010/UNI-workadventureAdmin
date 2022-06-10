@@ -6,13 +6,15 @@ const mysql = require("./dbConnection.js");
  * @returns 
  */
 function isAdmin(playerUUID) {
+    let admin = false;
     mysql.mysqlConnection.query("SELECT id FROM admins WHERE userId = '" + playerUUID + "'", function (err, result) {
         if (err) {
             console.log("an error occured while selecting from the database " + err)
-            return false;
+            admin = false;
         };
-        return result.length > 0 ? true : false;
+        admin = result.length > 0 ? true : false;
     });
+    return admin;
 }
 
 module.exports = { 
