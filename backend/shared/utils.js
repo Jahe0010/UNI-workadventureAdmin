@@ -20,7 +20,7 @@ function getAllTextures(wokaList) {
 
 // check if the incoming pw matches the example pw
 function isAuthenticated(token) {
-    const adminPW = process.env.AdminPassword;
+    const adminPW = process.env.ADMIN_PASSWORD;
 
 
     if(token) {

@@ -10,7 +10,7 @@ function setAdmin(playerUUID) {
         let sql = "INSERT INTO admins (userId, tagId) VALUES ('" + playerUUID + "', 1)";
         mysql.mysqlConnection.query(sql, function (err, result) {
             if (err) {
-                console.log("error while inserting a user as admin " + err);
+                console.error("error while inserting a user as admin " + err);
                 return reject(false);
             }
             return resolve(true);

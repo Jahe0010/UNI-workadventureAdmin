@@ -1,5 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser");
+require('dotenv').config(); 
 
 const wokaList = require('./resources/wokaList.json');
 const dbInsert = require("./db/dbInsert.js");
@@ -22,12 +23,12 @@ app.get("/admin/api/map", (req, res) => {
     if (utils.isAuthenticated(req.header('authorization'))) {
         // we extract the map url based on the incoming playUri
         return res.send(JSON.stringify({
-            mapUrl : "https://play.hs-kl.de/maps/" + req.query.playUri.split("maps/")[1],
+            mapUrl :  "https://" + req.query.playUri.split("global/")[1],
             policy_type: 1,
             tags: [],
             authenticationMandatory: false,
             roomSlug: null,
-            contactPage: null,
+            contactPage: "Einstiegsseite/credits.html",
             group: "wa",
             iframeAuthentication: null,
             miniLogo: null,
@@ -124,6 +125,12 @@ app.post('/admin/api/setAdmin', async (req,res) => {
 app.delete('/admin/api/removeAdmin', async (req,res) => {
     if (utils.isAuthenticated(req.header('authorization'))){
         let playerUUID = req.body.playerUUID;
+        let isAdmin = await dbSelection.isAdmin(playerUUID);
+
+        if(!isAdmin) {
+            return res.send("Player has no admin tag.");
+        }
+
         let deleteResponse = await dbDelete.removeAdmin(playerUUID);
 
         if(deleteResponse) {
