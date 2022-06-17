@@ -28,7 +28,7 @@ app.get("/admin/api/map", (req, res) => {
             tags: [],
             authenticationMandatory: false,
             roomSlug: null,
-            contactPage: "Einstiegsseite/credits.html",
+            contactPage: "Einstiegsseite/contact.html#contact",
             group: "wa",
             iframeAuthentication: null,
             miniLogo: null,
