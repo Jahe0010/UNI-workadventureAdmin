@@ -31,6 +31,27 @@ services:
       - traefik-net
       - admn-net
 
+  wiki:
+    image: ghcr.io/requarks/wiki:2
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: mariadb
+      DB_HOST: database
+      DB_PORT: 3306
+      DB_USER: "$DATABASE_USER"
+      DB_PASS: "$DATABASE_PASSWORD"
+      DB_NAME: wiki
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.wiki.rule=PathPrefix(`/wiki`)"
+      - "traefik.http.routers.wiki.entryPoints=web"
+      - "traefik.http.services.wiki.loadbalancer.server.port=3000"
+      - "traefik.http.routers.wiki.service=wiki"
+    networks:
+      - traefik-net
+      - admn-net
+
 networks:
   admn-net:
     driver: bridge
