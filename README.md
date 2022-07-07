@@ -10,5 +10,12 @@ Admin Interface for Workadventure
 5. create a .env File with the required informations based on the .env-example
 6. Run docker-compose up -d
 
+## Setup Database
+If you want to use the database structure that is defined in our example you can simply use the script inside the mysql folder. 
+
+IMPORTANT: You have to setup a USER first. Please use therefore the user you have put in your .env file! DONT use your root user. We dont recommend that. 
+
+First setup a User following the init.sql in 'mysql/admin' than grant privileges on the wiki database you created based on the instructions from 'mysql/wiki/init.sql'
+
 ## Usage
-Checkout the Administration Guide under "documentation" on how you can use the Admin API
+Checkout the Administration Guide under "[HS-KL WA-Admin wiki](http://play.hs-kl.de:3030/de/home/adminGuide/adminpassword)" on how you can use the Admin API. We apologize that there is only a german translation so far.
