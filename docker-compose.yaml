@@ -13,7 +13,6 @@ services:
       MARIADB_PASSWORD: "$DATABASE_PASSWORD"
     volumes:
       - /var/log/mysql:/var/lib/mysql
-      #- ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
     build: "./backend"
@@ -34,7 +33,7 @@ services:
   wiki:
     image: ghcr.io/requarks/wiki:2
     depends_on:
-      - db
+      - database
     environment:
       DB_TYPE: mariadb
       DB_HOST: database
@@ -48,6 +47,9 @@ services:
       - "traefik.http.routers.wiki.entryPoints=web"
       - "traefik.http.services.wiki.loadbalancer.server.port=3000"
       - "traefik.http.routers.wiki.service=wiki"
+    networks:
+      - traefik-net
+      - admn-net
 
 networks:
   admn-net:
