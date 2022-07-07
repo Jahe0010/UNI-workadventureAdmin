@@ -18,4 +18,4 @@ IMPORTANT: You have to setup a USER first. Please use therefore the user you hav
 First setup a User following the init.sql in 'mysql/admin' than grant privileges on the wiki database you created based on the instructions from 'mysql/wiki/init.sql'
 
 ## Usage
-Checkout the Administration Guide under "documentation" on how you can use the Admin API
+Checkout the Administration Guide under "[HS-KL WA-Admin wiki](http://play.hs-kl.de:3030/de/home/adminGuide/adminpassword)" on how you can use the Admin API. We apologize that there is only a german translation so far.
