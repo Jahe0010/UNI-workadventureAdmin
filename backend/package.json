@@ -2,7 +2,7 @@
     "name": "workadventure Admin API",
     "version": "1.0.0",
     "main": "index.js",
-    "author": "takeuchi & jannick Heim",
+    "author": "takeuchi & freakz/ jahe0010",
     "license": "MIT",
     "dependencies": {
         "body-parser": "^1.20.0",

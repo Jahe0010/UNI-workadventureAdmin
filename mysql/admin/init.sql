@@ -3,7 +3,7 @@ CREATE DATABASE workadventureadmin;
 USE workadventureadmin;
 
 CREATE USER 'username' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON workadventureadmin.* TO 'workadventure';
+GRANT ALL PRIVILEGES ON workadventureadmin.* TO 'username';
 FLUSH PRIVILEGES;
 
 
